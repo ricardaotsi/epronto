@@ -1,0 +1,27 @@
+
+.jumbotron {
+    background-image: url('/static/eprontosite/index.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.ctindex {
+    margin-top: 150px;
+    margin-bottom: 150px;
+}
+
+.btn-index {
+    color: #ffffff;
+    background-color: #3d487b;
+}
+
+.btn-index:hover {
+    color: #ffffff;
+    background-color: #263766
+}
+
+.btn-index:active {
+    color: #263766;
+    background-color: #ffffff;
+}

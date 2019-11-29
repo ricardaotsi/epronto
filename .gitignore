@@ -1,0 +1,13 @@
+### Django ###
+*.log
+*.pot
+*.pyc
+epronto/__pycache__/
+epronto/__init__.py
+eprontosite/__pycache__/
+eprontosite/migrations/
+eprontosite/__init__.py
+eprontosite/media/eprontosite/media/*
+local_settings.py
+db.sqlite3
+.vscode/

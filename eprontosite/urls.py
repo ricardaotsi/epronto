@@ -5,4 +5,5 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     url(r'^epronto/$', views.dashboard_home, name='dashboard_home'),
+    url(r'^epronto/perfil/$', views.perfil, name='perfil'),
 ]

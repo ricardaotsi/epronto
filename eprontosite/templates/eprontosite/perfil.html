@@ -1,0 +1,112 @@
+{% extends 'eprontosite/dashboard_base.html' %}
+{% load static %}
+{% block content %}
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h1> Atualizar usuario</h1>
+            </div>
+        </div>
+        <div class="clearfix">
+        </div>
+        {% if messages %}
+        {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+        <div class="alert alert-dismissible alert-success alerta-insert">
+            {% endif %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+            <div class="alert alert-dismissible alert-danger alerta-insert">
+                {% endif %}
+                <strong>{{message}}</strong>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Seus Dados</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br>
+                        <form class="form-horizontal form-label-left formulario" method="post"
+                            enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {% for hidden in form.hidden_fields %}
+                            {{ hidden }}
+                            {% endfor %}
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Nome
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" id="first-name" name="first-name" class="form-control"
+                                        value="{{usuario.first_name}}" required>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Sobrenome
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" id="last-name" name="last-name" class="form-control"
+                                        value="{{usuario.last_name}}" required>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Email
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" id="email" class="form-control" name="email"
+                                        value="{{usuario.email}}" requeired>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">CPF <span
+                                        class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input name="cpf" class="form-control cpf" type="text" value="{{usuario.profile.CPF}}"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Telefone Residencial com
+                                    DDD
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input id="tel-res" name="tel-res" class="form-control" type="text"
+                                        value="{{usuario.profile.Telefone_Residencial}}">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Telefone Celular com DDD
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input id="tel-cel" name="tel-cel" class="form-control" type="text"
+                                        value="{{usuario.profile.Telefone_Celular}}" required>
+                                </div>
+                            </div>
+                            <div class="ln_solid"></div>
+                            <div class="item form-group">
+                                <div class="col-md-6 col-sm-6 offset-md-3">
+                                    <button type="submit" class="btn btn-success"><span
+                                            class="glyphicon glyphicon-ok"></span> Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'eprontosite/js/perfil.js' %}"></script>
+{% endblock %}

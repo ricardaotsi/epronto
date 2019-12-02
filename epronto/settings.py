@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'eprontosite',
-    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -125,3 +124,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'eprontosite/media')
+
+CONTENT_TYPES = ['image', 'video']
+MAX_UPLOAD_SIZE = 102400

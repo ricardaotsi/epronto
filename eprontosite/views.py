@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from eprontosite.models import Profile
 from . import cpfcheck as calc
+from django.conf import settings
+from django.template.defaultfilters import filesizeformat
 
 def index(request):
     return render(request,"eprontosite/index.html")
@@ -34,15 +36,20 @@ def perfil(request):
         usuario.profile.CPF = request.POST.get('cpf')
         usuario.profile.Telefone_Residencial = request.POST.get('tel-res')
         usuario.profile.Telefone_Celular = request.POST.get('tel-cel')
+        if  request.FILES['inputimage']:
+            usuario.profile.Foto = request.FILES.get['inputimage']
         try:
             if len(usuario.profile.CPF) < 11 or not validate(usuario.profile.CPF):
                 messages.error(request, "CPF é inválido.")
             elif len(usuario.profile.Telefone_Celular) < 11:
                 messages.error(request, "Telefone Celular é inválido.")
+            elif request.FILES['inputimage'] and usuario.profile.Foto._size > settings.MAX_UPLOAD_SIZE:
+                messages.error(request, ('O tamanho do arquivo de foto de ser menor que %s. O tamanho atual é %s') % 
+                                            (filesizeformat(settings.MAX_UPLOAD_SIZE), filesizeformat(usuario.profile.Foto._size))
+)
             else:
                 usuario.save()
                 messages.success(request, 'Dados alterados com sucesso.')
-                messages.success(request, 'ok')
         except Exception as e:
             messages.error(request, "Ocorreu um problema na alteração. Entre em contato com o Administrador")
     return render(request,"eprontosite/perfil.html", {'usuario':usuario})
